@@ -3,13 +3,14 @@ package excelOperations;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-public class WritingExcelUsingForEachLoop {
+public class WritingExcelUsingForEachLoop2 {
 
 	public static void main(String[] args) throws IOException {
 
@@ -23,14 +24,19 @@ public class WritingExcelUsingForEachLoop {
 		
 		//have some way to hold data using data structure concept(Object Array/ArrayList/hashMap)
 		
-		//create 2 dimensional Object array(which can hold heterogeneous data )In excel file we have row & column ,so result will in 2Dimensional 
+		//create  Object Type arrayList
 		
-	 Object[][]	empdata= {{"EmpID","Name","Job"},{101,"David","Engineer"},{102,"Smith","Manager"},{103,"Scott","Analyst"}};
+	 ArrayList <Object[]> empdata=new ArrayList<Object[]>();
+	 empdata.add(new Object[] {"EmpID","Name","Job"});
+	 empdata.add(new Object[] {101,"David","Engineer"});
+	 empdata.add(new Object[] {102,"Smith","Manager"});
+	 empdata.add(new Object[] {103,"Scott","Analyst"});
+	 
 	 
 	 //write the empdata into sheet
 	 //using  For Each loop
 	 int rowcount=0;
-	 for(Object emp[]:empdata)
+	 for(Object[] emp:empdata)
 	 {
 		 XSSFRow row=sheet.createRow(rowcount++);
 		 int cellcount=0;
@@ -54,7 +60,7 @@ public class WritingExcelUsingForEachLoop {
 	 
 
 	// where the file need to create mention that path
-	String filepath = ".\\dataFiles\\Employees1.xlsx";
+	String filepath = ".\\dataFiles\\Employees2.xlsx";
 
 	// want to open the file fileOutput stream mode because we are going to write
 	// the data
@@ -66,7 +72,7 @@ public class WritingExcelUsingForEachLoop {
 	// close outputStream
 	outputStream.close();
 
-	System.out.println("Employees1.xlsx File created Successfully");
+	System.out.println("Employees2.xlsx File created Successfully");
 
 }
 
